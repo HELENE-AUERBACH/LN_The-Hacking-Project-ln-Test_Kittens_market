@@ -1,0 +1,27 @@
+<% if !@picture_hash['picture'].nil? && user_signed_in? %>
+  <h1>Voici la page de la photo n°<%= @picture_hash['index'] %></h1>
+  <BR>
+  <% if !notice.nil? %>
+    <div class="alert alert-success" role="alert">
+      <p id="notice"><%= notice %></p>
+    </div>
+  <% end %>
+  <BR>
+  <div>
+    <p>Son titre : <%= @picture_hash['picture'].title %></p>
+    <p>Sa description : <p class="content"><%= @picture_hash['picture'].description %></p></p>
+    <p>La date d'ajout de la photo : <%= @picture_hash['picture'].created_at %></p>
+    <p>La date de dernière modification des détails de la photo : <%= @picture_hash['picture'].updated_at %></p>
+    <p>Son prix : <%= @picture_hash['picture'].price %></p>
+    <br />
+  </div>
+<% elsif @picture_hash['picture'].nil? %>
+  <div class="alert alert-danger" role="alert">
+    <p>Aucune photo de n°<%= @picture_hash['index'] %> n'existe dans la base!</p>
+  </div>
+<% else %>
+  <div class="alert alert-danger" role="alert">
+    <p>Tu n'es pas connecté : tu n'es donc pas autorisé à visualiser les détails de cette photo!</p>
+  </div>
+<% end %>
+
